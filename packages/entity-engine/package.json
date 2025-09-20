@@ -1,6 +1,6 @@
 {
   "name": "@scenemesh/entity-engine",
-  "version": "0.1.89",
+  "version": "0.1.90",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -143,6 +143,7 @@
     "type": "git",
     "url": "https://github.com/scene-mesh-studio/entity-engine"
   },
+  "homepage": "https://www.scenemesh.dev/",
   "license": "MIT",
   "keywords": [
     "scenemesh",
