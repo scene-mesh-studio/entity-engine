@@ -1,0 +1,67 @@
+{
+  "name": "@scenemesh/entity-engine-basemodule",
+  "version": "0.0.7",
+  "description": "Entity Engine Basic Module",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build:ts": "tsc --build ./tsconfig.json",
+    "build:assets": "node scripts/copy-css.cjs",
+    "build": "yarn clean:dist && yarn build:ts && yarn build:assets",
+    "prepublishOnly": "yarn build",
+    "dev": "tsc --watch --project ./tsconfig.json",
+    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
+    "lint:fix": "eslint --fix \"src/**/*.{js,jsx,ts,tsx}\"",
+    "lint:print": "npx eslint --print-config eslint.config.mjs > eslint-show-config.json",
+    "fm:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\"",
+    "fm:fix": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
+    "fix:all": "npm run lint:fix && npm run fm:fix",
+    "clean:dist": "rm -rf dist tsconfig.tsbuildinfo",
+    "clean": "rm -rf .turbo dist node_modules tsconfig.tsbuildinfo"
+  },
+  "peerDependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "@mantine/core": "8.2.5",
+    "@mantine/hooks": "8.2.5",
+    "@mantine/modals": "8.2.5",
+    "@mantine/notifications": "8.2.5"
+  },
+  "devDependencies": {
+    "eslint": "^9.30.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "typescript": "^5.8.2"
+  },
+  "dependencies": {
+    "@scenemesh/entity-engine": "*",
+    "lucide-react": "^0.525.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": {
+    "name": "SceneMesh Team"
+  },
+  "license": "MIT",
+  "keywords": [
+    "scenemesh",
+    "entity-engine",
+    "metadata-driven",
+    "entity",
+    "react",
+    "typescript",
+    "mdd",
+    "model driven development"
+  ]
+}

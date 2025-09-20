@@ -1,0 +1,8 @@
+{
+  "name": "entity-engine-ai-module",
+  "description": "Complete AI Module with Chat, Completion and Object Generation",
+  "provider": "@scenemesh/entity-engine-aimodule",
+  "version": "1.0.0",
+  "url": "https://github.com/scenemesh/entity-engine-aimodule",
+  "dependencies": ["@ai-sdk/react", "@ai-sdk/openai"]
+}

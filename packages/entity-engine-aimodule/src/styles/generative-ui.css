@@ -1,0 +1,759 @@
+/**
+ * 🎨 生成式UI组件样式
+ * 
+ * 为推理显示和生成式UI组件提供完整样式支持
+ * 基于AI SDK 5.0官方设计规范
+ */
+
+/* ================================ */
+/* 🧠 推理显示组件样式 */
+/* ================================ */
+
+.reasoning-container {
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  background-color: #f8fafc;
+  margin: 0.5rem 0;
+  overflow: hidden;
+  transition: all 0.2s ease-in-out;
+}
+
+.reasoning-container:hover {
+  border-color: #d1d5db;
+  background-color: #f1f5f9;
+}
+
+.reasoning-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #e5e7eb;
+  cursor: pointer;
+  user-select: none;
+}
+
+.reasoning-header:hover {
+  background-color: #f1f5f9;
+}
+
+.reasoning-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.reasoning-toggle {
+  transition: transform 0.2s ease-in-out;
+  color: #6b7280;
+}
+
+.reasoning-toggle.expanded {
+  transform: rotate(180deg);
+}
+
+.reasoning-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+
+.reasoning-content.expanded {
+  max-height: 500px;
+}
+
+.reasoning-text {
+  padding: 1rem;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: #1f2937;
+  white-space: pre-wrap;
+  background-color: #ffffff;
+  border-radius: 0.25rem;
+  margin: 0;
+}
+
+.reasoning-streaming {
+  position: relative;
+}
+
+.reasoning-streaming::after {
+  content: '█';
+  animation: blink 1s infinite;
+  color: #3b82f6;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* ================================ */
+/* ⚡ 生成式UI组件样式 */
+/* ================================ */
+
+.generative-ui-loading {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  background-color: #dbeafe;
+  border-radius: 0.5rem;
+  border: 1px solid #93c5fd;
+}
+
+.loading-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #e5e7eb;
+  border-top: 2px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.generative-ui-error {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  background-color: #fef2f2;
+  border-radius: 0.5rem;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+}
+
+.error-icon {
+  font-size: 1rem;
+}
+
+.error-text {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.generative-ui-content {
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.generative-ui-unknown {
+  padding: 0.75rem;
+  background-color: #fefce8;
+  border-radius: 0.5rem;
+  border: 1px solid #fde68a;
+  color: #92400e;
+  font-size: 0.875rem;
+}
+
+.generative-ui-unknown-state {
+  padding: 0.75rem;
+  background-color: #f3f4f6;
+  border-radius: 0.5rem;
+  border: 1px solid #d1d5db;
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+/* ================================ */
+/* 🌤️ 天气组件样式 */
+/* ================================ */
+
+.weather-widget {
+  background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(116, 185, 255, 0.3);
+  min-width: 280px;
+}
+
+.weather-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.weather-location {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.weather-condition {
+  font-size: 0.875rem;
+  opacity: 0.9;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+}
+
+.weather-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.temperature-display {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+}
+
+.temperature-value {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.temperature-unit {
+  font-size: 1.5rem;
+  font-weight: 300;
+  opacity: 0.8;
+}
+
+.weather-metric {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.metric-label {
+  font-size: 0.875rem;
+  opacity: 0.8;
+}
+
+.metric-value {
+  font-weight: 500;
+}
+
+/* ================================ */
+/* 📈 股票组件样式 */
+/* ================================ */
+
+.stock-widget {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  min-width: 280px;
+}
+
+.stock-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.stock-symbol {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.stock-price {
+  text-align: right;
+}
+
+.price-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1f2937;
+  line-height: 1;
+}
+
+.stock-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.stock-change {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+}
+
+.stock-change.positive {
+  color: #10b981;
+}
+
+.stock-change.negative {
+  color: #ef4444;
+}
+
+.change-value {
+  font-size: 1rem;
+}
+
+.change-percent {
+  font-size: 0.875rem;
+  opacity: 0.8;
+}
+
+.stock-metric {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.875rem;
+}
+
+.metric-label {
+  color: #6b7280;
+}
+
+.metric-value {
+  font-weight: 500;
+  color: #1f2937;
+}
+
+/* ================================ */
+/* 💻 代码执行组件样式 */
+/* ================================ */
+
+.code-execution-widget {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.code-header {
+  background-color: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 0.75rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.code-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.language-tag {
+  background-color: #3b82f6;
+  color: white;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.status-indicator {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.status-indicator.success {
+  color: #10b981;
+}
+
+.status-indicator.error {
+  color: #ef4444;
+}
+
+.execution-time {
+  font-size: 0.75rem;
+  color: #6b7280;
+  font-family: monospace;
+}
+
+.code-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.code-block {
+  background-color: #1f2937;
+  padding: 1rem;
+}
+
+.code-text {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.875rem;
+  color: #f9fafb;
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-x: auto;
+}
+
+.execution-output {
+  border-top: 1px solid #e5e7eb;
+}
+
+.output-header {
+  background-color: #f9fafb;
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.output-text {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.875rem;
+  padding: 1rem;
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-x: auto;
+  line-height: 1.5;
+}
+
+.output-text.success {
+  color: #1f2937;
+  background-color: #f0fdf4;
+}
+
+.output-text.error {
+  color: #b91c1c;
+  background-color: #fef2f2;
+}
+
+/* ================================ */
+/* 📊 图表组件样式 */
+/* ================================ */
+
+.chart-widget {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  min-width: 320px;
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.chart-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.chart-type {
+  background-color: #f3f4f6;
+  color: #6b7280;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.chart-content {
+  min-height: 200px;
+}
+
+.bar-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.bar-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.bar-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  min-width: 80px;
+  text-align: right;
+}
+
+.bar-container {
+  flex: 1;
+  height: 24px;
+  background-color: #f3f4f6;
+  border-radius: 0.25rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 0.25rem;
+  transition: width 0.5s ease-in-out;
+}
+
+.bar-value {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1f2937;
+  min-width: 40px;
+  text-align: left;
+}
+
+.chart-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  background-color: #f9fafb;
+  border: 2px dashed #d1d5db;
+  border-radius: 0.5rem;
+  color: #6b7280;
+  font-size: 1rem;
+}
+
+/* ================================ */
+/* 🔍 搜索结果组件样式 */
+/* ================================ */
+
+.search-results-widget {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+}
+
+.search-header {
+  background-color: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-query {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.search-count {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.search-results {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.search-result-item {
+  border-bottom: 1px solid #f3f4f6;
+  padding: 1rem 1.5rem;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.search-result-item:last-child {
+  border-bottom: none;
+}
+
+.search-result-item:hover {
+  background-color: #f9fafb;
+}
+
+.result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+}
+
+.result-title {
+  color: #1d4ed8;
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  line-height: 1.4;
+}
+
+.result-title:hover {
+  text-decoration: underline;
+}
+
+.result-source {
+  background-color: #f3f4f6;
+  color: #6b7280;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.result-snippet {
+  color: #4b5563;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin: 0 0 0.5rem 0;
+}
+
+.result-url {
+  color: #10b981;
+  font-size: 0.75rem;
+  font-family: monospace;
+  word-break: break-all;
+}
+
+/* ================================ */
+/* 🛠️ 工具创建助手样式 */
+/* ================================ */
+
+.tool-creation-helper {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.tool-preview {
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.875rem;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+/* ================================ */
+/* 📱 响应式设计 */
+/* ================================ */
+
+@media (max-width: 640px) {
+  .weather-widget,
+  .stock-widget,
+  .chart-widget {
+    min-width: auto;
+    width: 100%;
+  }
+  
+  .temperature-value {
+    font-size: 2.5rem;
+  }
+  
+  .price-value {
+    font-size: 1.5rem;
+  }
+  
+  .search-results-widget {
+    max-width: none;
+  }
+  
+  .bar-item {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+  
+  .bar-label {
+    text-align: left;
+    min-width: auto;
+  }
+}
+
+/* ================================ */
+/* 🌙 深色模式支持 */
+/* ================================ */
+
+@media (prefers-color-scheme: dark) {
+  .reasoning-container {
+    background-color: #374151;
+    border-color: #4b5563;
+  }
+  
+  .reasoning-container:hover {
+    background-color: #4b5563;
+    border-color: #6b7280;
+  }
+  
+  .reasoning-header:hover {
+    background-color: #4b5563;
+  }
+  
+  .reasoning-title {
+    color: #f9fafb;
+  }
+  
+  .reasoning-text {
+    background-color: #1f2937;
+    color: #f9fafb;
+  }
+  
+  .stock-widget,
+  .code-execution-widget,
+  .chart-widget,
+  .search-results-widget {
+    background-color: #1f2937;
+    border-color: #374151;
+  }
+  
+  .stock-symbol,
+  .price-value,
+  .chart-title {
+    color: #f9fafb;
+  }
+  
+  .metric-value {
+    color: #f9fafb;
+  }
+  
+  .search-header,
+  .code-header {
+    background-color: #374151;
+    border-color: #4b5563;
+  }
+  
+  .search-query {
+    color: #f9fafb;
+  }
+  
+  .search-result-item:hover {
+    background-color: #374151;
+  }
+  
+  .result-title {
+    color: #60a5fa;
+  }
+  
+  .result-snippet {
+    color: #d1d5db;
+  }
+}

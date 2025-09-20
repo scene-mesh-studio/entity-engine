@@ -1,0 +1,20 @@
+{
+  "extends": "@scenemesh/tsconfig/nextjs.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@scenemesh/entity-engine": ["../../packages/entity-engine/src"],
+      "@scenemesh/entity-engine/*": ["../../packages/entity-engine/src/*"],
+      "@/*": ["./src/*"],
+      "src/*": ["./src/*"]
+  },
+  "types": ["node"]
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": ["node_modules"]
+}

@@ -1,0 +1,59 @@
+{
+  "name": "scenemesh-monorepo",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "dev:wk": "turbo run dev --filter=@scenemesh/workbench",
+    "start": "turbo run start --filter=@scenemesh/workbench",
+    "lint": "turbo run lint",
+    "clean": "turbo run clean && rm -rf node_modules yarn.lock",
+    "rebuild": "yarn clean && yarn install && yarn build",
+    "build:ee": "turbo run build --filter=@scenemesh/entity-engine --force",
+    "build:wk": "turbo run build --filter=@scenemesh/workbench --force",
+    "build:docs": "turbo run build --filter=@scenemesh/entity-engine-docs --force",
+    "build:mui": "turbo run build --filter=@scenemesh/entity-suite-mui --force",
+    "build:semi": "turbo run build --filter=@scenemesh/entity-suite-semi --force",
+    "db:generate": "turbo run db:generate",
+    "db:migrate": "turbo run db:migrate",
+    "db:studio": "turbo run db:studio",
+    "fm:fix": "turbo run fm:fix",
+    "lint:fix": "turbo run lint:fix",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,md}\"",
+    "pub:ee": "turbo run pub --filter=@scenemesh/entity-engine --force"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.23.0",
+    "@typescript-eslint/parser": "^8.15.1",
+    "concurrently": "^9.1.2",
+    "eslint": "^9.30.0",
+    "eslint-import-resolver-typescript": "^4.2.7",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-perfectionist": "^4.10.1",
+    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-unused-imports": "^4.1.4",
+    "globals": "^16.0.0",
+    "minimatch": "^10.0.3",
+    "node-addon-api": "^8.4.0",
+    "node-gyp": "^11.2.0",
+    "prettier": "^3.6.2",
+    "prisma": "^6.12.0",
+    "turbo": "^2.0.9",
+    "typescript": "^5.8.2",
+    "typescript-eslint": "^8.28.0"
+  },
+  "packageManager": "yarn@1.22.22",
+  "dependencies": {
+    "@prisma/client": "^6.12.0",
+    "@scenemesh/entity-engine-aimodule": "^1.0.0"
+  },
+  "resolutions": {
+    "react": "19.1.1",
+    "react-dom": "19.1.1"
+  }
+} 

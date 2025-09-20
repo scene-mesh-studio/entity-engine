@@ -1,0 +1,24 @@
+{
+  "extends": "@scenemesh/tsconfig/react-library.json",
+  "compilerOptions": {
+    "module": "ESNext",
+    "jsx": "react-jsx", // 支持新的 JSX 转换
+    "rootDir": "src", 
+    "outDir": "dist", // 编译输出目录
+    "declaration": true, // 生成 .d.ts 类型文件
+    "declarationMap": true, // 生成类型文件的 source map
+    "sourceMap": true, // 生成 .js 文件的 source map
+    "composite": false, // 用于项目引用
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+      // "@/*": ["src/*"]
+    },
+    "noEmit": false,
+    "skipLibCheck": true,
+    "types": ["node", "react", "react-dom"],
+  },
+  "include": [ "src/**/*" ],
+  "exclude": ["node_modules", "dist", "tests", "examples"]
+}

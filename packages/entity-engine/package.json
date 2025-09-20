@@ -1,0 +1,157 @@
+{
+  "name": "@scenemesh/entity-engine",
+  "version": "0.1.89",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "style": "./dist/main.css",
+  "files": [
+    "dist",
+    "package.json",
+    "README.md",
+    "LICENSE",
+    "prisma/schema.prisma"
+  ],
+  "bin": {
+    "setup-ee": "./dist/cli.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./server": {
+      "types": "./dist/server.d.ts",
+      "import": "./dist/server.mjs",
+      "require": "./dist/server.js"
+    },
+    "./package.json": "./package.json",
+    "./main.css": "./dist/main.css"
+  },
+  "sideEffects": [
+    "*.css"
+  ],
+  "scripts": {
+    "build:css": "postcss ./src/styles/globals.css -o ./dist/main.css",
+    "build": "yarn clean:dist && tsup --config tsup.config.ts && yarn build:css",
+    "typecheck:server": "tsc -p ./tsconfig.server.json",
+    "dev:css": "postcss ./src/styles/globals.css -o ./dist/main.css -w",
+    "dev": "tsup --config tsup.config.ts --watch & yarn dev:css",
+    "prepublishOnly": "yarn clean:dist && yarn build",
+    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
+    "lint:fix": "eslint --fix \"src/**/*.{js,jsx,ts,tsx}\"",
+    "lint:print": "npx eslint --print-config eslint.config.mjs > eslint-show-config.json",
+    "fm:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\"",
+    "fm:fix": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
+    "fix:all": "npm run lint:fix && npm run fm:fix",
+    "clean": "rm -rf .turbo dist node_modules tsconfig.tsbuildinfo",
+    "clean:dist": "rm -rf dist tsconfig.tsbuildinfo",
+    "bak-postinstall": "prisma generate",
+    "db:generate": "prisma migrate dev",
+    "db:migrate": "prisma migrate deploy",
+    "db:push": "prisma db push",
+    "db:reset": "prisma migrate reset",
+    "db:studio": "prisma studio",
+    "db:init": "prisma generate",
+    "db:client2dist": "cpy \"src/lib/prisma/client/**/*\" \"dist/src/lib/prisma/client\"",
+    "pub": "npm publish --access public"
+  },
+  "devDependencies": {
+    "@prisma/client": "^6.12.0",
+    "@scenemesh/eslint-config": "*",
+    "@scenemesh/tsconfig": "*",
+    "@tailwindcss/postcss": "^4.1.11",
+    "@types/minimatch": "^6.0.0",
+    "@types/node": "^22.15.3",
+    "@types/pg": "8.15.5",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "autoprefixer": "^10.4.21",
+    "cpy-cli": "^5.0.0",
+    "esbuild-plugin-alias": "^0.2.1",
+    "eslint": "^9.30.0",
+    "postcss": "^8.5.6",
+    "postcss-cli": "^11.0.1",
+    "prisma": "^6.8.2",
+    "react-hook-form": "^7.61.1",
+    "shadcn": "^2.9.3",
+    "tailwindcss": "^4.1.11",
+    "tsup": "^8.2.3",
+    "typescript": "5.8.2"
+  },
+  "dependencies": {
+    "@auth/core": "0.40.0",
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/sortable": "^10.0.0",
+    "@dnd-kit/utilities": "^3.2.2",
+    "@hookform/resolvers": "^5.2.1",
+    "@iconify/react": "^6.0.0",
+    "@paralleldrive/cuid2": "^2.2.2",
+    "@prisma/client": "^6.12.0",
+    "@tanstack/react-query": "^5.76.0",
+    "@trpc/client": "^11.1.2",
+    "@trpc/next": "^11.1.2",
+    "@trpc/react-query": "^11.1.2",
+    "@trpc/server": "^11.1.2",
+    "@uiw/react-json-view": "2.0.0-alpha.34",
+    "@uiw/react-md-editor": "4.0.8",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "jotai": "^2.0.0",
+    "lucide-react": "^0.525.0",
+    "pg": "8.16.3",
+    "react-markdown": "10.1.0",
+    "remark-gfm": "4.0.1",
+    "superjson": "^2.2.2",
+    "tailwind-merge": "^3.3.1",
+    "tw-animate-css": "^1.3.5",
+    "zod": "^3.25.67",
+    "zod-from-json-schema": "0.0.5",
+    "zod-to-json-schema": "3.24.6"
+  },
+  "peerDependencies": {
+    "@mantine/carousel": "8.2.5",
+    "@mantine/charts": "8.2.5",
+    "@mantine/core": "8.2.5",
+    "@mantine/dates": "8.2.5",
+    "@mantine/hooks": "8.2.5",
+    "@mantine/modals": "8.2.5",
+    "@mantine/notifications": "8.2.5",
+    "@prisma/client": "^6.12.0",
+    "dayjs": "1.11.18",
+    "embla-carousel": "8.6.0",
+    "embla-carousel-react": "8.6.0",
+    "mantine-datatable": "8.2.0",
+    "react": ">=18 <20",
+    "react-dom": ">=18 <20",
+    "react-hook-form": ">=7 <8",
+    "recharts": "3.1.2"
+  },
+  "peerDependenciesMeta": {
+    "@prisma/client": {
+      "optional": true
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": {
+    "name": "SceneMesh Team"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scene-mesh-studio/entity-engine"
+  },
+  "license": "MIT",
+  "keywords": [
+    "scenemesh",
+    "entity-engine",
+    "metadata-driven",
+    "entity",
+    "react",
+    "typescript",
+    "mdd",
+    "model driven development"
+  ]
+}

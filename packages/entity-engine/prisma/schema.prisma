@@ -1,0 +1,51 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+    // output   = "../src/lib/@prisma/client"
+    binaryTargets = ["native"]
+    // engineType = "library"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("EE_DATABASE_URL")
+}
+
+
+model EntityObject {
+    id          String      @id @db.VarChar(32)
+    modelName   String @db.VarChar(255)
+    values  Json @default("{}")
+    isDeleted   Boolean @default(false)
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+    @@index([modelName])
+    @@index([modelName, isDeleted])
+    @@index([modelName, createdAt])
+    @@index([modelName, updatedAt])
+
+
+    EntityObjectReference EntityObjectReference[] @relation(name: "to")
+}
+
+model EntityObjectReference {
+    id          Int       @id @default(autoincrement())
+    fromFieldName   String @db.VarChar(255)
+    fromModelName   String @db.VarChar(255)
+    fromObjectId    String @db.VarChar(32)
+
+    toModelName     String @db.VarChar(255)
+    toObjectId      String @db.VarChar(32)
+    toObject        EntityObject @relation(fields: [toObjectId], references: [id], name: "to")
+
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+
+    @@index([fromModelName, fromObjectId])
+    @@index([toModelName, toObjectId])
+    @@index([fromModelName, fromFieldName])
+    @@index([fromModelName, fromFieldName, fromObjectId, toModelName])
+}
+

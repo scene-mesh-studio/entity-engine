@@ -1,0 +1,40 @@
+{
+  "name": "@scenemesh/cms",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "clean": "rm -rf node_modules .next out dist build"
+  },
+  "dependencies": {
+    "@scenemesh/entity-engine": "*",
+    "@scenemesh/entity-suite-additions": "*",
+    "@scenemesh/entity-engine-studio": "*",
+    "@scenemesh/entity-engine-aimodule": "*",
+  "react": "^19.1.1",
+  "react-dom": "^19.1.1",
+    "next": "15.5.2",
+    "@mantine/core": "8.2.5",
+    "@mantine/hooks": "8.2.5",
+    "@mantine/modals": "8.2.5",
+    "@mantine/notifications": "8.2.5",
+    "mantine-datatable": "8.2.0",
+    "@mantine/charts":"8.2.5",
+    "@mantine/carousel":"8.2.5",
+    "@mantine/dates": "8.2.5",
+    "dayjs":"1.11.18",
+    "recharts":"3.1.2"
+  },
+  "devDependencies": {
+    "typescript": "^5",
+    "@types/node": "^20",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "eslint": "^9",
+    "eslint-config-next": "15.5.2",
+    "@eslint/eslintrc": "^3"
+  }
+}

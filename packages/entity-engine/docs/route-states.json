@@ -1,0 +1,23 @@
+{
+    "views": [
+        {
+            "name": "dashboard",
+            "path": "/dashboard",
+            "title": "Dashboard",
+            "icon": "home",
+            "state": {
+                "model": "product",
+                "viewType": "shell",
+                "viewName": "mainDashboardView",
+                "baseObjectId": "z1cv5emekgc0jpoyue65n5c4",
+                "references": {},
+                "data": {}
+            },
+            "views": [
+                {
+                    
+                }
+            ]
+        }
+    ]
+}

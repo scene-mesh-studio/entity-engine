@@ -1,0 +1,8 @@
+{
+    "name": "build-in-module",
+    "version": "1.0.0",
+    "description": "内建模块",
+    "provider": "Scenemesh Team",
+    "dependencies": [],
+    "url": "http://github.com/scenemesh"
+}
