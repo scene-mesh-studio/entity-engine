@@ -1,4 +1,4 @@
-# SceneMesh Studio - 技术创新工作室
+# SceneMesh Studio
 
 SceneMesh Studio 是一个专注于场景化技术解决方案的创新技术工作室，致力于通过技术融合创新，构建高效的应用开发场景。
 
