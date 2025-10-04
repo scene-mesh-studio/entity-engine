@@ -506,7 +506,7 @@ export async function externalFindGroupedObjectsLogic(
 
     if (query?.filter) {
         const filterResult = buildFilterSqlQuery(
-            query.filter as FilterCondition,
+            query.filter as unknown as FilterCondition,
             model,
             externalConfig
         );
