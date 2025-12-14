@@ -24,6 +24,13 @@ function InnerTextfieldWidget(props: EntityWidgetProps) {
     const fontWeight = field?.widgetOptions?.fontWeight || '500';
     const fontStyle = field?.widgetOptions?.fontStyle || '';
     const fontColor = field?.widgetOptions?.fontColor || 'black';
+    const minRowsValue = field?.widgetOptions?.minRows;
+    const minRows =
+        typeof minRowsValue === 'number'
+            ? minRowsValue
+            : typeof minRowsValue === 'string' && !isNaN(Number(minRowsValue))
+            ? Number(minRowsValue)
+            : 3;
 
     if (behavior.mode === 'display') {
         // return <div className="rounded w-full">{value || '无内容'}</div>;
@@ -46,7 +53,8 @@ function InnerTextfieldWidget(props: EntityWidgetProps) {
                 <Textarea
                     placeholder={field?.description || '请输入...'}
                     {...fieldControl}
-                    minRows={3}
+                    minRows={ minRows }
+                    rows={ minRows }
                 />
             );
         } else {
