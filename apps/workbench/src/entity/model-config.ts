@@ -761,12 +761,32 @@ export const views: IEntityView[] = [
       { name: 'fieldTitle', title: '字段标题', spanCols: 12 },
       { name: 'fieldCategory', title: '字段类别', spanCols: 12 },
       { name: 'fieldType', title: '字段类型', spanCols: 12 },
-      { name: 'fieldComputeSource', title: '计算来源', spanCols: 12, showWhen: 'fieldCategory === "compute"' },
-      { name: 'fieldComputeMethod', title: '计算方法', spanCols: 12, showWhen: 'fieldCategory === "compute"' },
+      {
+        name: 'fieldComputeSource',
+        title: '计算来源',
+        spanCols: 12,
+        showWhen: 'fieldCategory === "compute"',
+      },
+      {
+        name: 'fieldComputeMethod',
+        title: '计算方法',
+        spanCols: 12,
+        showWhen: 'fieldCategory === "compute"',
+      },
       { name: 'fieldAsInput', title: '字段作为输入', widget: 'switch', spanCols: 12 },
       { name: 'fieldAsState', title: '字段作为状态', widget: 'switch', spanCols: 12 },
-      { name: 'fieldStateSector', title: '状态对象名称', spanCols: 6, showWhen: 'fieldAsState === true' },
-      { name: 'fieldStateName', title: '状态属性名称', spanCols: 6, showWhen: 'fieldAsState === true' },
+      {
+        name: 'fieldStateSector',
+        title: '状态对象名称',
+        spanCols: 6,
+        showWhen: 'fieldAsState === true',
+      },
+      {
+        name: 'fieldStateName',
+        title: '状态属性名称',
+        spanCols: 6,
+        showWhen: 'fieldAsState === true',
+      },
       {
         name: 'fieldDescription',
         title: '字段描述',
@@ -986,9 +1006,13 @@ export const views: IEntityView[] = [
                 widget: 'action',
                 widgetOptions: {
                   actionType: 'reference-view',
-                  payload: { fromFieldName: 'actionScripts', toModelName: 'actionScript', viewType: 'grid' },
+                  payload: {
+                    fromFieldName: 'actionScripts',
+                    toModelName: 'actionScript',
+                    viewType: 'grid',
+                  },
                 },
-              }
+              },
             ],
           },
           {
@@ -1007,7 +1031,7 @@ export const views: IEntityView[] = [
                     fromFieldName: 'rootScene',
                     toModelName: 'scene',
                     viewType: 'mastail',
-                    mode: 'edit'
+                    mode: 'edit',
                   },
                 },
               },

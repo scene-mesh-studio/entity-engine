@@ -7,24 +7,33 @@
     "esModuleInterop": true,
     "strict": true,
     "jsx": "react-jsx", // 支持新的 JSX 转换
-    "rootDir": "src", 
+    "rootDir": "src",
     "outDir": "dist", // 编译输出目录
     "declaration": true, // 生成 .d.ts 类型文件
     "declarationMap": true, // 生成类型文件的 source map
     "sourceMap": true, // 生成 .js 文件的 source map
-  "composite": false, // 关闭项目引用以兼容 tsup 的 dts 生成
+    "composite": false, // 关闭项目引用以兼容 tsup 的 dts 生成
     "moduleResolution": "Bundler",
-  "resolveJsonModule": true,
+    "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
       // "@/*": [
       //   "./src/*"
       // ]
-      "@prisma/client": ["src/lib/prisma/client"]
+      "@prisma/client": [
+        "src/lib/prisma/client"
+      ]
     },
     "noEmit": false,
     "skipLibCheck": true,
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist", "tests", "examples"]
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "tests",
+    "examples"
+  ]
 }

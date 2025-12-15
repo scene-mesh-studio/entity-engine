@@ -7,7 +7,7 @@ const extendsClient = (client: PrismaClient, eventRegistry?: IEntityEventRegistr
         name: 'entity-engine-extensions',
         query: {
             entityObject: {
-                update: async ({ args, query, model }) => {
+                update: async ({ args, query }: any) => {
                     const result = await query(args);
                     eventRegistry?.emit({
                         name: 'entityObject.updated',
@@ -16,7 +16,7 @@ const extendsClient = (client: PrismaClient, eventRegistry?: IEntityEventRegistr
                     // console.log('Prisma Client Extension: update result:', result);
                     return result;
                 },
-                delete: async ({ args, query, model }) => {
+                delete: async ({ args, query }: any) => {
                     const result = await query(args);
                     eventRegistry?.emit({
                         name: 'entityObject.deleted',
@@ -25,7 +25,7 @@ const extendsClient = (client: PrismaClient, eventRegistry?: IEntityEventRegistr
                     // console.log('Prisma Client Extension: delete result:', result);
                     return result;
                 },
-                deleteMany: async ({ args, query, model }) => {
+                deleteMany: async ({ args, query }: any) => {
                     const result = await query(args);
                     eventRegistry?.emit({
                         name: 'entityObject.deletedMany',
@@ -34,7 +34,7 @@ const extendsClient = (client: PrismaClient, eventRegistry?: IEntityEventRegistr
                     // console.log('Prisma Client Extension: deleteMany result:', result);
                     return result;
                 },
-                create: async ({ args, query, model }) => {
+                create: async ({ args, query }: any) => {
                     const result = await query(args);
                     eventRegistry?.emit({
                         name: 'entityObject.created',

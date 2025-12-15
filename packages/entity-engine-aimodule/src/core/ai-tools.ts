@@ -46,8 +46,8 @@ export type ToolChoice<TOOLS extends ToolSet = {}> =
 /**
  * 停止条件类型 - 支持各种停止策略
  */
-export type StopCondition<_TOOLS extends ToolSet = {}> = 
-  | ((options: { stepNumber: number; steps: Array<any>; }) => boolean)
+export type StopCondition<TOOLS extends ToolSet = {}> = 
+  | ((options: { stepNumber: number; steps: Array<StepResult<TOOLS>>; }) => boolean)
   | { type: 'stepCount'; value: number }
   | { type: 'custom'; condition: (context: any) => boolean };
 
@@ -689,7 +689,29 @@ export class AIToolsIntegration extends EventEmitter {
    * 创建MCP客户端
    */
   async createMCPClient(config: MCPClientConfig): Promise<MCPClient> {
-    const { experimental_createMCPClient } = await import('ai');
+    const dynamicImport = async (moduleId: string): Promise<any> => {
+      const importer = new Function('moduleId', 'return import(moduleId)') as (moduleId: string) => Promise<any>;
+      return importer(moduleId);
+    };
+
+    let experimental_createMCPClient: any;
+
+    // ai@5 has moved MCP helpers into @ai-sdk/mcp. Keep this runtime-resolved to avoid hard dependency.
+    try {
+      ({ experimental_createMCPClient } = await dynamicImport('@ai-sdk/mcp'));
+    } catch {
+      // Back-compat: older versions may still export from 'ai'
+      try {
+        const aiMod = (await import('ai')) as any;
+        experimental_createMCPClient = aiMod.experimental_createMCPClient;
+      } catch {
+        // ignore
+      }
+    }
+
+    if (typeof experimental_createMCPClient !== 'function') {
+      throw new Error('MCP client requires @ai-sdk/mcp (or a compatible AI SDK version). Please install @ai-sdk/mcp to use MCP features.');
+    }
     
     let transportConfig: any;
     
@@ -708,7 +730,13 @@ export class AIToolsIntegration extends EventEmitter {
         // Conditionally import stdio transport only in Node.js environment
         if (typeof window === 'undefined' && typeof process !== 'undefined') {
           try {
-            const { Experimental_StdioMCPTransport } = await import('ai/mcp-stdio');
+            let Experimental_StdioMCPTransport: any;
+            try {
+              ({ Experimental_StdioMCPTransport } = await dynamicImport('@ai-sdk/mcp/mcp-stdio'));
+            } catch {
+              // Back-compat: older versions may have exposed this path under ai
+              ({ Experimental_StdioMCPTransport } = await dynamicImport('ai/mcp-stdio'));
+            }
             transportConfig = {
               transport: new Experimental_StdioMCPTransport({
                 command: config.transport.command,
@@ -716,7 +744,8 @@ export class AIToolsIntegration extends EventEmitter {
               })
             };
           } catch (error) {
-            throw new Error('stdio transport requires Node.js environment and ai/mcp-stdio package');
+            const detail = error instanceof Error ? error.message : String(error);
+            throw new Error(`stdio transport requires Node.js environment and an MCP stdio transport implementation. Install @ai-sdk/mcp and try again. Original error: ${detail}`);
           }
         } else {
           throw new Error('stdio transport is only available in Node.js environment');

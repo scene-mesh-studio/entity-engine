@@ -37,6 +37,8 @@ export function applySettingsToTheme(
 
   const updateColorScheme = (schemeName: ThemeColorScheme) => {
     const currentScheme = theme.colorSchemes?.[schemeName];
+    const currentSchemeObject =
+      currentScheme && typeof currentScheme === 'object' ? currentScheme : {};
 
     const updatedPalette = {
       ...currentScheme?.palette,
@@ -64,7 +66,7 @@ export function applySettingsToTheme(
     };
 
     return {
-      ...currentScheme,
+      ...currentSchemeObject,
       palette: updatedPalette,
       customShadows: updatedCustomShadows,
     };

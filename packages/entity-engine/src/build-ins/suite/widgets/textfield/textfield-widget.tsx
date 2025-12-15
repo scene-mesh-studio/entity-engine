@@ -29,8 +29,8 @@ function InnerTextfieldWidget(props: EntityWidgetProps) {
         typeof minRowsValue === 'number'
             ? minRowsValue
             : typeof minRowsValue === 'string' && !isNaN(Number(minRowsValue))
-            ? Number(minRowsValue)
-            : 3;
+              ? Number(minRowsValue)
+              : 3;
 
     if (behavior.mode === 'display') {
         // return <div className="rounded w-full">{value || '无内容'}</div>;
@@ -53,8 +53,8 @@ function InnerTextfieldWidget(props: EntityWidgetProps) {
                 <Textarea
                     placeholder={field?.description || '请输入...'}
                     {...fieldControl}
-                    minRows={ minRows }
-                    rows={ minRows }
+                    minRows={minRows}
+                    rows={minRows}
                 />
             );
         } else {
