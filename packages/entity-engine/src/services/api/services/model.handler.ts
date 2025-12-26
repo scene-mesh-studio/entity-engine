@@ -7,7 +7,9 @@ import {
     findObjectLogic,
     type ApiContext,
     listObjectsLogic,
+    countObjectsLogic,
     listObjectsInputSchema,
+    countObjectsInputSchema,
     findOneWithReferencesLogic,
 } from './model.service';
 
@@ -107,6 +109,9 @@ export async function fetchEntityServiceRequestHandler(props: fetchEntityRequest
     } else if (slug[0] === 'objects' && slug.length >= 2) {
         // /objects/{modelName}
         await handleObjectsRequest(context, response);
+    } else if(slug[0] === 'count' && slug.length >= 2) {
+        // /count/{modelName}
+        await handleCountRequest(context, response);
     } else if (slug[0] === 'object' && slug.length >= 2) {
         // /object/{objectId}
         await handleObjectRequest(context, response);
@@ -211,6 +216,47 @@ async function handleMetaViewsRequest(context: fetchContext, response: fetchResp
         );
     }
 }
+
+async function handleCountRequest(context: fetchContext, response: fetchResponse) {
+    const { request, serviceContext, slug } = context;
+    const url = new URL(request.url);
+    const searchParams = url.searchParams;
+    const modelName = slug && slug[1];
+    const refModelName = searchParams.get('fromModelName');
+    const refFieldName = searchParams.get('fromFieldName');
+    const refObjectId = searchParams.get('fromObjectId');
+
+    const inputForValidation = {
+        modelName,
+        ...(refModelName &&
+            refFieldName &&
+            refObjectId && {
+                reference: {
+                    fromModelName: refModelName,
+                    fromFieldName: refFieldName,
+                    fromObjectId: refObjectId,
+                },
+            }),
+    };
+
+    const validation = countObjectsInputSchema.safeParse(inputForValidation);
+    if (!validation.success) {
+        response.status(400).message('Invalid query parameters');
+        return;
+    }
+
+    // slug[1] should be the modelName
+    if (!modelName) {
+        response.status(400).message('Model name is required in the path.');
+        return;
+    }
+
+    const ret = await countObjectsLogic(serviceContext, validation.data);
+    response.json({
+        count: ret,
+    });
+}
+
 async function handleObjectsRequest(context: fetchContext, response: fetchResponse) {
     const { request, serviceContext, slug } = context;
     const url = new URL(request.url);
